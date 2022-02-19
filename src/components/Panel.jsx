@@ -7,6 +7,7 @@ const Box = styled.div`
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
   font-size: 1rem;
+  transition: all 1s linear;
 `;
 
 const BoxHeader = styled.h2`
@@ -22,11 +23,19 @@ const Pod = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+
+  &:first-child {
+    border-right: 1px solid ${({ theme }) => theme.secondary};
+    padding-right: 2em;
+  }
+
+  &:last-child {
+    padding-left: 2em;
+  }
 `;
 
 const Field = styled.div`
   display: flex;
-  padding: 0 2rem;
   justify-content: space-between;
 `;
 
@@ -37,6 +46,8 @@ const FieldInput = styled.input`
   border: 1px solid ${({ theme }) => theme.secondary};
   text-align: right;
   color: ${({ theme }) => theme.primary};
+  font-size: 1em;
+  font-family: 'Roboto Mono';
 
   &:focus {
     outline: none;

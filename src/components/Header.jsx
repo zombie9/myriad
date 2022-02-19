@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   left: 0;
   width: 100%;
   background: ${({ theme }) => theme.background};
+  transition: all 1s linear;
 `;
 
 export const Header = () => {
