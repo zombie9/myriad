@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyles from './GlobalStyles';
+import { Container } from './components/Container';
 import { Header } from './components/Header';
 import { ThemeToggle } from './components/ThemeToggle';
 import { lightTheme, darkTheme } from './components/Themes';
@@ -16,6 +17,7 @@ export const App = () => {
       <GlobalStyles />
       <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       <Header />
+      <Container />
     </ThemeProvider>
   );
 };

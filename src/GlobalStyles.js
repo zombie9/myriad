@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.primary};
     transition: all 0.30s linear;
     font-family: 'Montserrat';
     -webkit-font-smoothing: antialiased;
