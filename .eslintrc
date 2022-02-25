@@ -23,7 +23,7 @@
   ],
 
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "eol-last": ["error", "always"],
     "react/prop-types": 0,
     "import/order": [
