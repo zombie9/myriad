@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import SkillRow from './SkillRow';
+
 const Box = styled.div`
   padding: 1rem;
   background: ${({ theme }) => theme.panel};
@@ -56,11 +58,12 @@ const Field = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5em;
 `;
 
 const NumberField = styled.input`
   padding: 0.3rem;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
   width: 5rem;
   background: none;
   border: 1px solid ${({ theme }) => theme.secondary};
@@ -77,7 +80,7 @@ const NumberField = styled.input`
 
 const LineField = styled.input`
   padding: 0.3rem;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
   width: 100%;
   background: none;
   border: 1px solid ${({ theme }) => theme.secondary};
@@ -93,7 +96,7 @@ const LineField = styled.input`
 
 const TextField = styled.textarea`
   padding: 0.3rem;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
   width: 100%;
   background: none;
   border: 1px solid ${({ theme }) => theme.secondary};
@@ -110,6 +113,12 @@ const TextField = styled.textarea`
 
 const FieldLabel = styled.label`
   min-width: 8rem;
+`;
+
+const TextLabel = styled.label`
+  min-width: 8rem;
+  padding-top: 0.2rem;
+  align-self: flex-start;
 `;
 
 export const Panel = ({ section, sectionType, pods }) => {
@@ -142,10 +151,15 @@ export const Panel = ({ section, sectionType, pods }) => {
                   {pod.map((field, index) => {
                     return (
                       <Field key={index}>
-                        <FieldLabel>{field.name}</FieldLabel>
+                        {field.type === 'text' || field.type === 'skill' ? (
+                          <TextLabel>{field.name}</TextLabel>
+                        ) : (
+                          <FieldLabel>{field.name}</FieldLabel>
+                        )}
                         {field.type === 'number' && <NumberField type="text" />}
                         {field.type === 'line' && <LineField type="text" />}
                         {field.type === 'text' && <TextField spellCheck="false" />}
+                        {field.type === 'skill' && <SkillRow field={{ ...field }}></SkillRow>}
                       </Field>
                     );
                   })}

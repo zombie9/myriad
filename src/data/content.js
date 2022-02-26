@@ -60,5 +60,19 @@ export const content = [
         }
       ]
     ]
+  },
+  {
+    title: 'Skills',
+    type: 'single',
+    pods: [
+      [
+        {
+          name: 'Perception',
+          stat: 'int',
+          description: 'The ability to notice stuff',
+          type: 'skill'
+        }
+      ]
+    ]
   }
 ];
