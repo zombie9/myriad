@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-import Montserrat from './assets/fonts/Montserrat-Regular.ttf';
-import RobotoMono from './assets/fonts/RobotoMono-Light.ttf';
+import Montserrat from '../assets/fonts/Montserrat-Regular.ttf';
+import RobotoMono from '../assets/fonts/RobotoMono-Light.ttf';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -39,6 +39,25 @@ const GlobalStyles = createGlobalStyle`
 
   code {
     font-family: 'Roboto Mono';
+  }
+
+  input, textarea {
+    padding: 0.3rem;
+    width: 100%;
+    background: none;
+    border: 1px solid ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
+    font-size: 1rem;
+    font-family: 'Montserrat';
+
+    &:focus {
+      outline: none;
+      border: 1px solid ${({ theme }) => theme.primary};
+    }
+  }
+
+  textarea {
+    resize: vertical;
   }
 `;
 
