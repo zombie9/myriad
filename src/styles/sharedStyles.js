@@ -116,7 +116,7 @@ export const TopRow = styled.div`
 export const StatField = styled.select`
   margin-right: 0.6rem;
   width: 5rem;
-  /* height: 2rem; */
+  height: 2.1rem;
   text-align: center;
   font-size: 0.8rem;
 `;

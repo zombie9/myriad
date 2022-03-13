@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+import { Context } from '../context/context';
 import { ThemeButton } from '../styles/sharedStyles';
 
 const Button = styled(ThemeButton)`
@@ -10,5 +11,10 @@ const Button = styled(ThemeButton)`
 `;
 
 export const SaveButton = () => {
-  return <Button>Save</Button>;
+  const { character } = useContext(Context);
+  const saveCharacter = () => {
+    console.log(character);
+    localStorage.setItem('myriad', JSON.stringify(character));
+  };
+  return <Button onClick={() => saveCharacter()}>Save</Button>;
 };

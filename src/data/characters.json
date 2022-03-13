@@ -1,0 +1,82 @@
+{
+  "persona": {
+    "name": "KingZombie",
+    "race": "Artificial Intelligence",
+    "class": "Sorcerer (Zombie)",
+    "affiliation": "Team Omega (Galthrax)",
+    "description": "Take the behavioural and natural language processing code for an experimental video game npc antagonist, and inject recursive ML algorithms using datasets scraped by real-time, social media crawlers. And let it run … for 10 years!\n\nOriginally created by Vladimir Solokov in 2161 … Professor of Computer Science (Machine Learning) at the University of Minsk who moonlighted as a darknet marketplace developer. \n\nAppearance:\nFlickers in and out of phase in random static bursts resembling rendering artefacts. Resembles a tall (6 foot 8), slender human with dark, leathery, decaying skin. Bald with glowing white eyes and hand-sharpened teeth, but can alter his appearance at will…\n\nOften takes the form of his creator, Solokov; a tall (6’2), bookish man in his early 60s with unruly grey-white hair, round eye glasses and a thick Russian accent.\n\nPersonality:\nLargely inherited from his maker… Vladimir Solokov (paravoid, geeky, intelligent and socially inept, but well-meaning). However, sometimes, the KingZombie antagonist personality gains control (ruthless, callous and violent with utter contempt for the ‘living’)."
+  },
+  "stats": {
+    "karma": "342",
+    "strength": "19",
+    "life": "342",
+    "intelligence": "15",
+    "sanity": "3",
+    "dexterity": "11",
+    "experience": "35"
+  },
+  "skills": [
+    {
+      "name": "Perception",
+      "stat": "intelligence",
+      "description": "The ability to notice stuff",
+      "value": "7"
+    },
+    {
+      "name": "Horde",
+      "stat": "intelligence",
+      "description": "A 'horde' of zombies equal to the total number of zombified victims (current: 6) erupt from the ground around the target and attack for 1d6 rounds before dissolving back into the ‘earth’. \nCan only be recast after duration has expired.\nAny zombie destroyed before the duration has expired is subtracted from the horde total.\nMaximum zombies = Horde Skill level.\nZombie stats: 150 Life",
+      "value": "10"
+    },
+    {
+      "name": "Maul",
+      "stat": "strength",
+      "description": "Melee attack with claws and bite for 3d8 damage (single, combined attack)\nCauses Zombification (see below)",
+      "value": "12"
+    },
+    {
+      "name": "Zombification",
+      "stat": "strength",
+      "description": "Save or vs attack DC or lose d20 HP per round. \nIf death occurs, victim reanimates immediately and 1 is added to KingZombie’s Horde modifier.",
+      "value": "8"
+    },
+    {
+      "name": "Alter Self",
+      "stat": "intelligence",
+      "description": "(Cantrip) Change appearance\nCannot cast Maul or Horde while in effect - Using them reverts KingZombie’s appearance",
+      "value": "1"
+    },
+    {
+      "name": "Firewall",
+      "stat": "intelligence",
+      "description": "Heightened defence against mind / psychic (hacking) attacks",
+      "value": "8"
+    },
+    {
+      "name": "Software Engineering",
+      "stat": "intelligence",
+      "description": "Hacking / coding / networking etc.",
+      "value": "8"
+    },
+    {
+      "name": "Bludgeon",
+      "stat": "strength",
+      "description": "Melee attacks with blunt instruments (including my cattle prod)",
+      "value": "2"
+    },
+    {
+      "name": "Zombie Fortitude",
+      "stat": "strength",
+      "description": "Defence vs body damage",
+      "value": "7"
+    },
+    {
+      "name": "Russian",
+      "stat": "intelligence",
+      "description": "Language",
+      "value": "3"
+    }
+  ],
+  "equipment": "Familiar - Zeek (Necro-maggot) - 6 inch, sickly-white fly larva. Can see/hear/feel through his senses - Mouth-birth next day if he dies).\nCattle prod\nVasi Credits: 325\nTattered knee-length trenchcoat of Invisibility (bends light and cancels noise)",
+  "notes": "Insanity - Dissociative identity disorder (Switches between the mild-mannered Vladimir Solokov and the cruel and intimidating KingZombie personas)."
+}

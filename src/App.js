@@ -9,10 +9,10 @@ import { Context } from './context/context';
 import { useDarkMode } from './hooks/useDarkMode';
 import GlobalStyles from './styles/GlobalStyles';
 import { lightTheme, darkTheme } from './styles/Themes';
-import { emptyCharacter } from './utils/buildCharacter';
+import { buildCharacter } from './utils/buildCharacter';
 
 export const App = () => {
-  const [character, setCharacter] = useState(emptyCharacter);
+  const [character, setCharacter] = useState(buildCharacter);
 
   const value = useMemo(() => ({ character, setCharacter }), [character, setCharacter]);
 

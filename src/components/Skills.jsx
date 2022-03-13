@@ -17,7 +17,6 @@ const Centre = styled.div`
 
 const Skills = () => {
   const { character } = useContext(Context);
-  console.log(character);
   return (
     <Box>
       <BoxHeader>
