@@ -1,38 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { Context } from '../context/context';
 import { statFields } from '../data/stats';
 import {
   Box,
   BoxHeader,
-  BoxBody,
-  DualPod,
   Field,
   NumberField,
-  FieldLabel
+  FieldLabel,
+  DualPod,
+  StatBlock
 } from '../styles/sharedStyles';
 
 const Stats = () => {
+  const { character, setCharacter } = useContext(Context);
+  const handleChange = (event, key) => {
+    setCharacter({
+      ...character,
+      stats: {
+        ...character.stats,
+        [key]: event.target.value
+      }
+    });
+  };
+
   return (
     <Box>
       <BoxHeader>
         <code>{`${statFields.title}:`}</code>
       </BoxHeader>
-      <BoxBody>
-        {statFields?.pods?.map((pod, index) => {
+      <DualPod>
+        {Object.keys(character.stats).map((key, index) => {
           return (
-            <DualPod key={index}>
-              {pod.map((field, index) => {
-                return (
-                  <Field key={index}>
-                    <FieldLabel>{field.name}</FieldLabel>
-                    <NumberField type="text" />
-                  </Field>
-                );
-              })}
-            </DualPod>
+            <StatBlock key={index}>
+              <Field key={key}>
+                <FieldLabel>{key}</FieldLabel>
+                <NumberField
+                  spellCheck="false"
+                  value={character.stats[key]}
+                  onChange={(event) => handleChange(event, key)}
+                />
+              </Field>
+            </StatBlock>
           );
         })}
-      </BoxBody>
+      </DualPod>
     </Box>
   );
 };

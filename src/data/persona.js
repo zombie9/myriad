@@ -3,23 +3,28 @@ export const personaFields = {
   fields: [
     {
       name: 'name',
-      type: 'line'
+      type: 'line',
+      value: null
     },
     {
       name: 'race',
-      type: 'line'
+      type: 'line',
+      value: null
     },
     {
       name: 'class',
-      type: 'line'
+      type: 'line',
+      value: null
     },
     {
       name: 'affiliation',
-      type: 'line'
+      type: 'line',
+      value: null
     },
     {
       name: 'description',
-      type: 'text'
+      type: 'text',
+      value: null
     }
   ]
 };

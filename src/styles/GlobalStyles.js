@@ -54,10 +54,27 @@ const GlobalStyles = createGlobalStyle`
       outline: none;
       border: 1px solid ${({ theme }) => theme.primary};
     }
+
+    ::placeholder {
+      color: ${({ theme }) => theme.mid};
+    }
   }
 
   textarea {
     resize: vertical;
+  }
+
+  svg {
+    cursor: pointer;
+    path {
+      fill: ${({ theme }) => theme.mid};
+    }
+
+    &:hover {
+      path {
+        fill: ${({ theme }) => theme.primary};
+      }
+    }
   }
 `;
 

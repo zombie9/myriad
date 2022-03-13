@@ -13,7 +13,9 @@ export const Box = styled.div`
 `;
 
 export const BoxHeader = styled.h2`
+  margin-top: 0;
   font-size: 1.2rem;
+  margin-bottom: 1.6rem;
 `;
 
 export const BoxBody = styled.div`
@@ -51,26 +53,92 @@ export const TextLabel = styled.label`
   align-self: flex-start;
 `;
 
-export const DualPod = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+export const DualPod = styled.ul`
+  padding: 0;
+  margin: 0;
+
+  & li:nth-child(odd) {
+    padding-right: 1em;
+  }
+  & li:nth-child(even) {
+    padding-left: 1em;
+  }
 
   @media only screen and (min-width: 720px) {
-    width: 50%;
-
-    &:first-child {
+    & li:nth-child(odd) {
       border-right: 1px solid ${({ theme }) => theme.secondary};
       padding-right: 2em;
     }
-
-    &:last-child {
+    & li:nth-child(even) {
       padding-left: 2em;
     }
   }
 `;
 
+export const StatBlock = styled.li`
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 50%;
+  list-style-type: none;
+
+  @media only screen and (min-width: 720px) {
+    min-width: 50%;
+  }
+`;
+
 export const NumberField = styled.input`
-  width: 5rem;
-  text-align: right;
+  width: 4rem;
+  text-align: center;
+`;
+
+export const Button = styled.button`
+  border: none;
+  background: none;
+`;
+
+export const SkillBlock = styled.div`
+  margin-bottom: 1.6rem;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+`;
+
+export const TopRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  align-items: center;
+`;
+
+export const StatField = styled.input`
+  margin-right: 0.6rem;
+  width: 2rem;
+  height: 1.4rem;
+  text-align: center;
+  font-size: 0.8rem;
+`;
+
+export const DescriptionField = styled.textarea`
+  flex-grow: 1;
+  margin-right: 0.6rem;
+  height: 1.4rem;
+`;
+
+export const LevelField = styled.input`
+  width: 4rem;
+  height: 1.4rem;
+  text-align: center;
+`;
+
+export const SkillLabel = styled.input`
+  height: 1.4rem;
+  margin-right: 0.6rem;
+`;
+
+export const DiceBox = styled.div`
+  width: 5.4rem;
+  text-align: center;
 `;

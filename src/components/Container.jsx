@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 // import { Panel } from './Panel';
 import Persona from './Persona';
+import Skills from './Skills';
 import Stats from './Stats';
 
 const StyledContainer = styled.div`
@@ -18,6 +19,7 @@ export const Container = () => {
     <StyledContainer>
       <Persona />
       <Stats />
+      <Skills />
       {/* {content.map((section, index) => {
         return (
           <Panel

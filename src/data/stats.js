@@ -4,24 +4,30 @@ export const statFields = {
   pods: [
     [
       {
-        name: 'karma'
+        name: 'karma',
+        value: null
       },
       {
-        name: 'life (current)'
+        name: 'life (current)',
+        value: null
       },
       {
-        name: 'sanity'
+        name: 'sanity',
+        value: null
       }
     ],
     [
       {
-        name: 'strength'
+        name: 'strength',
+        value: null
       },
       {
-        name: 'intelligence'
+        name: 'intelligence',
+        value: null
       },
       {
-        name: 'dexterity'
+        name: 'dexterity',
+        value: null
       }
     ]
   ]
