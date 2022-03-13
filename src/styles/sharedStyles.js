@@ -113,10 +113,10 @@ export const TopRow = styled.div`
   align-items: center;
 `;
 
-export const StatField = styled.input`
+export const StatField = styled.select`
   margin-right: 0.6rem;
-  width: 2rem;
-  height: 1.4rem;
+  width: 5rem;
+  /* height: 2rem; */
   text-align: center;
   font-size: 0.8rem;
 `;
@@ -141,4 +141,19 @@ export const SkillLabel = styled.input`
 export const DiceBox = styled.div`
   width: 5.4rem;
   text-align: center;
+  height: 1.6rem;
+`;
+
+export const ThemeButton = styled.button`
+  background: none;
+  color: ${({ theme }) => theme.primary};
+  border: 1px solid ${({ theme }) => theme.mid};
+  cursor: pointer;
+  padding: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+  z-index: 100;
+
+  &:hover {
+    background: ${({ theme }) => theme.panel};
+  }
 `;

@@ -33,15 +33,13 @@ const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
     transition: background-color 0.5s linear;
     font-family: 'Montserrat';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   code {
     font-family: 'Roboto Mono';
   }
 
-  input, textarea {
+  input, textarea, select {
     padding: 0.3rem;
     width: 100%;
     background: none;
@@ -62,6 +60,7 @@ const GlobalStyles = createGlobalStyle`
 
   textarea {
     resize: vertical;
+    white-space: pre-wrap;
   }
 
   svg {

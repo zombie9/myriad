@@ -7,13 +7,13 @@ export const emptyCharacter = {
     description: ''
   },
   stats: {
-    karma: '',
-    strength: '',
-    life: '',
-    intelligence: '',
-    sanity: '',
-    dexterity: '',
-    experience: ''
+    karma: '0',
+    strength: '0',
+    life: '0',
+    intelligence: '0',
+    sanity: '0',
+    dexterity: '0',
+    experience: '0'
   },
   skills: [
     {
@@ -22,5 +22,7 @@ export const emptyCharacter = {
       description: 'The ability to notice stuff',
       value: '0'
     }
-  ]
+  ],
+  equipment: '',
+  notes: ''
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// import { content } from '../data/content';
-
-// import { Panel } from './Panel';
+import Equipment from './Equipment';
+import Notes from './Notes';
 import Persona from './Persona';
 import Skills from './Skills';
 import Stats from './Stats';
@@ -20,16 +19,8 @@ export const Container = () => {
       <Persona />
       <Stats />
       <Skills />
-      {/* {content.map((section, index) => {
-        return (
-          <Panel
-            section={section.title}
-            sectionType={section.type}
-            pods={section.pods}
-            key={index}
-          />
-        );
-      })} */}
+      <Equipment />
+      <Notes />
     </StyledContainer>
   );
 };

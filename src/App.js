@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { Container } from './components/Container';
 import { Header } from './components/Header';
+import { SaveButton } from './components/SaveButton';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Context } from './context/context';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -22,6 +23,7 @@ export const App = () => {
     <Context.Provider value={value}>
       <ThemeProvider theme={themeMode}>
         <GlobalStyles />
+        <SaveButton />
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         <Header />
         <Container />
