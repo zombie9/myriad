@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   left: 0;
   width: 100%;
   background: ${({ theme }) => theme.background};
+  z-index: 9998;
 
   @media only screen and (min-width: 720px) {
     align-items: center;

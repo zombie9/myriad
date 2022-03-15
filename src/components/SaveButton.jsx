@@ -8,6 +8,7 @@ const Button = styled(ThemeButton)`
   position: fixed;
   top: 1.3rem;
   left: 1.3rem;
+  z-index: 9999;
 `;
 
 export const SaveButton = () => {
