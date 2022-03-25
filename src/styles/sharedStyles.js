@@ -119,6 +119,15 @@ export const StatField = styled.select`
   height: 2.1rem;
   text-align: center;
   font-size: 0.8rem;
+
+  option {
+    background-color: ${({ theme }) => theme.panel};
+    text-align: left;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.background} !important;
+    }
+  }
 `;
 
 export const DescriptionField = styled.textarea`

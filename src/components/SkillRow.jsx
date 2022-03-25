@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 
+import { MACRO_PREFIX, stats, skillStatOptions } from '../constants';
 import { Context } from '../context/context';
 import {
   SkillBlock,
@@ -24,7 +25,7 @@ const SkillRow = ({ field, index }) => {
   const [spin, setSpin] = useState(false);
 
   const buildMacro = (stat, skill) => {
-    return `/roll 1d20+${character.stats[stat]}+${skill}`;
+    return `${MACRO_PREFIX}${character.stats[stat]}+${skill}`;
   };
 
   const handleChange = (event) => {
@@ -75,11 +76,11 @@ const SkillRow = ({ field, index }) => {
           onChange={(event) => handleChange(event)}
         >
           <option value="" disabled>
-            Stat
+            {skillStatOptions.DEFAULT}
           </option>
-          <option value="strength">STR</option>
-          <option value="intelligence">INT</option>
-          <option value="dexterity">DEX</option>
+          <option value={stats.STRENGTH}>{skillStatOptions.STR}</option>
+          <option value={stats.INTELLIGENCE}>{skillStatOptions.INT}</option>
+          <option value={stats.DEXTERITY}>{skillStatOptions.DEX}</option>
         </StatField>
         <DescriptionField
           name="description"
