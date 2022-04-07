@@ -50,7 +50,8 @@ export const TextLabel = styled.label`
   min-width: 8rem;
   text-transform: capitalize;
   padding-top: 0.2rem;
-  align-self: flex-start;
+  font-size: 1rem;
+  /* align-self: flex-start; */
 `;
 
 export const DualPod = styled.ul`
@@ -154,7 +155,7 @@ export const DiceBox = styled.div`
 `;
 
 export const ThemeButton = styled.button`
-  background: none;
+  background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.primary};
   border: 1px solid ${({ theme }) => theme.mid};
   cursor: pointer;
