@@ -7,13 +7,11 @@ const DarkModeToggle = styled(ThemeButton)`
   position: fixed;
   top: 1.3rem;
   right: 1.3rem;
-  z-index: 9999;
+  z-index: 9998;
 `;
 
 export const ThemeToggle = ({ theme, toggleTheme }) => {
   return (
-    <DarkModeToggle onClick={toggleTheme}>
-      {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-    </DarkModeToggle>
+    <DarkModeToggle onClick={toggleTheme}>{theme === 'dark' ? 'Light' : 'Dark'}</DarkModeToggle>
   );
 };

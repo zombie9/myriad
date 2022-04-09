@@ -83,6 +83,7 @@ const SkillRow = ({ field, index }) => {
           <option value={stats.DEXTERITY}>{skillStatOptions.DEX}</option>
         </StatField>
         <DescriptionField
+          rows={field.description.split('\n').length + 1}
           name="description"
           value={field.description}
           placeholder="Description"

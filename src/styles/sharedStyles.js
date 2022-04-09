@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  position: relative;
   padding: 1rem;
   background: ${({ theme }) => theme.panel};
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
@@ -28,6 +29,19 @@ export const BoxBody = styled.div`
   }
 `;
 
+export const ModalBackdrop = styled.div`
+  z-index: 9999;
+  position: fixed;
+  background-color: hsla(0, 0%, 0%, 0.8);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const SinglePod = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,6 +52,12 @@ export const Field = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5em;
+`;
+
+export const PersonaDescriptionField = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 0.5em;
 `;
 
@@ -134,7 +154,6 @@ export const StatField = styled.select`
 export const DescriptionField = styled.textarea`
   flex-grow: 1;
   margin-right: 0.6rem;
-  height: 1.4rem;
 `;
 
 export const LevelField = styled.input`

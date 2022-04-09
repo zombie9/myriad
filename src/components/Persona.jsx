@@ -2,7 +2,15 @@ import React, { useContext } from 'react';
 
 import { Context } from '../context/context';
 import { personaFields } from '../data/persona';
-import { Box, BoxHeader, BoxBody, SinglePod, Field, TextLabel } from '../styles/sharedStyles';
+import {
+  Box,
+  BoxHeader,
+  BoxBody,
+  SinglePod,
+  Field,
+  TextLabel,
+  PersonaDescriptionField
+} from '../styles/sharedStyles';
 
 const Persona = () => {
   const { character, setCharacter } = useContext(Context);
@@ -26,23 +34,28 @@ const Persona = () => {
           {Object.keys(character.persona).map((key) => {
             return (
               <Field key={key}>
-                <TextLabel>{key}</TextLabel>
-                {key === 'description' ? (
-                  <textarea
-                    spellCheck="false"
-                    value={character.persona[key]}
-                    onChange={(event) => handleChange(event, key)}
-                  />
-                ) : (
-                  <input
-                    type="text"
-                    value={character.persona[key]}
-                    onChange={(event) => handleChange(event, key)}
-                  />
+                {key !== 'description' && (
+                  <>
+                    <TextLabel>{key}</TextLabel>
+                    <input
+                      type="text"
+                      value={character.persona[key]}
+                      onChange={(event) => handleChange(event, key)}
+                    />
+                  </>
                 )}
               </Field>
             );
           })}
+          <PersonaDescriptionField>
+            <TextLabel>Description</TextLabel>
+            <textarea
+              rows={character.persona.description.split('\n').length + 1}
+              spellCheck="false"
+              value={character.persona.description}
+              onChange={(event) => handleChange(event, 'description')}
+            />
+          </PersonaDescriptionField>
         </SinglePod>
       </BoxBody>
     </Box>

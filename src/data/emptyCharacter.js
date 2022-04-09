@@ -1,4 +1,4 @@
-const emptyCharacter = {
+export const emptyCharacter = {
   persona: {
     name: '',
     race: '',
@@ -25,11 +25,4 @@ const emptyCharacter = {
   ],
   equipment: '',
   notes: ''
-};
-
-const savedCharacter = localStorage.getItem('myriad');
-
-export const buildCharacter = () => {
-  if (savedCharacter) return JSON.parse(savedCharacter);
-  return emptyCharacter;
 };

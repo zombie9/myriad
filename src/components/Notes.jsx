@@ -19,6 +19,7 @@ const Notes = () => {
       </BoxHeader>
       <BoxBody>
         <textarea
+          rows={character.notes.split('\n').length + 1}
           spellCheck="false"
           value={character.notes}
           onChange={(event) => handleChange(event)}

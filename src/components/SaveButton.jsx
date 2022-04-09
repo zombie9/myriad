@@ -1,41 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Context } from '../context/context';
-import { ThemeButton, TextLabel } from '../styles/sharedStyles';
+import { ThemeButton } from '../styles/sharedStyles';
+
+import { SaveModal } from './SaveModal';
 
 const Button = styled(ThemeButton)`
   position: fixed;
   top: 1.3rem;
   left: 1.3rem;
-  z-index: 9999;
-`;
-
-const SaveForm = styled(ThemeButton)`
-  position: fixed;
-  top: 6rem;
-  left: 1.3rem;
-  z-index: 9999;
-  max-width: 300px;
-  text-align: left;
-  display: flex;
-  align-items: center;
+  z-index: 9998;
 `;
 
 export const SaveButton = () => {
-  const { character } = useContext(Context);
-  const saveCharacter = () => {
-    console.log(character);
-    localStorage.setItem('myriad', JSON.stringify(character));
-  };
-  const handleChange = (event) => console.log(event.target);
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
   return (
     <>
-      <Button onClick={() => saveCharacter()}>Save</Button>
-      <SaveForm>
-        <TextLabel>Name:</TextLabel>
-        <input type="text" onChange={(event) => handleChange(event)} />
-      </SaveForm>
+      <Button onClick={() => setShowModal(true)}>Save</Button>
+      {showModal && <SaveModal closeModal={closeModal} />}
     </>
   );
 };
