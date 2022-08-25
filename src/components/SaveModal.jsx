@@ -37,7 +37,6 @@ export const SaveModal = ({ closeModal }) => {
     const currentSaveData = JSON.parse(localStorage.getItem('myriad')) || {};
     const saveData = { ...currentSaveData, [saveName]: character };
     localStorage.setItem('myriad', JSON.stringify(saveData));
-    closeModal();
   };
   const handleChange = (event) => setSaveName(event.target.value);
   return (
@@ -48,9 +47,20 @@ export const SaveModal = ({ closeModal }) => {
         </CloseButton>
         <SaveForm>
           <SaveLabel>Name:</SaveLabel>
-          <input type="text" onChange={(event) => handleChange(event)} value={currentSave || ''} />
+          <input
+            type="text"
+            onChange={(event) => handleChange(event)}
+            value={saveName || currentSave}
+          />
           <SumbmitButton onClick={() => saveCharacter()}>Submit</SumbmitButton>
         </SaveForm>
+        <ThemeButton
+          as="a"
+          href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(character))}`}
+          download={`${saveName || currentSave}.json`}
+        >
+          Export
+        </ThemeButton>
       </Box>
     </ModalBackdrop>
   );
