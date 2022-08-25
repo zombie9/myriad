@@ -15,8 +15,12 @@ import { lightTheme, darkTheme } from './styles/Themes';
 export const App = () => {
   const [character, setCharacter] = useState(emptyCharacter);
   const [showLoadModal, setShowLoadModal] = useState(true);
+  const [currentSave, setCurrentSave] = useState(null);
 
-  const value = useMemo(() => ({ character, setCharacter }), [character, setCharacter]);
+  const value = useMemo(
+    () => ({ character, setCharacter, currentSave, setCurrentSave }),
+    [character, setCharacter, currentSave, setCurrentSave]
+  );
 
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;

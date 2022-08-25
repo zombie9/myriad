@@ -29,7 +29,8 @@ const CloseButton = styled.div`
 `;
 
 export const SaveModal = ({ closeModal }) => {
-  const { character } = useContext(Context);
+  const { character, currentSave } = useContext(Context);
+  console.log(currentSave);
   const [saveName, setSaveName] = useState();
   const saveCharacter = () => {
     console.log(character);
@@ -47,7 +48,7 @@ export const SaveModal = ({ closeModal }) => {
         </CloseButton>
         <SaveForm>
           <SaveLabel>Name:</SaveLabel>
-          <input type="text" onChange={(event) => handleChange(event)} />
+          <input type="text" onChange={(event) => handleChange(event)} value={currentSave || ''} />
           <SumbmitButton onClick={() => saveCharacter()}>Submit</SumbmitButton>
         </SaveForm>
       </Box>

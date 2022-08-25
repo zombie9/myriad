@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
+import { Context } from '../context/context';
 import { ThemeButton } from '../styles/sharedStyles';
 
 import { SaveModal } from './SaveModal';
@@ -15,6 +16,8 @@ const Button = styled(ThemeButton)`
 export const SaveButton = () => {
   const [showModal, setShowModal] = useState(false);
   const closeModal = () => setShowModal(false);
+  const { character } = useContext(Context);
+  console.log(character);
   return (
     <>
       <Button onClick={() => setShowModal(true)}>Save</Button>

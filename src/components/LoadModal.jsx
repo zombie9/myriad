@@ -34,7 +34,7 @@ const LoadSelect = styled(StatField)`
 `;
 
 export const LoadModal = ({ setShowLoadModal }) => {
-  const { setCharacter } = useContext(Context);
+  const { setCharacter, setCurrentSave } = useContext(Context);
   const currentSaveData = JSON.parse(localStorage.getItem('myriad'));
   const [selection, setSelection] = useState('new');
   const handleChange = (event) => {
@@ -45,6 +45,7 @@ export const LoadModal = ({ setShowLoadModal }) => {
     if (Object.keys(currentSaveData).includes(selection)) {
       setCharacter(currentSaveData[selection]);
     }
+    setCurrentSave(selection);
     setShowLoadModal(false);
   };
 
