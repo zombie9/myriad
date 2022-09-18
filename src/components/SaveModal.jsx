@@ -18,6 +18,7 @@ const SaveLabel = styled.div`
 const SumbmitButton = styled(ThemeButton)`
   padding: 0.3rem 0.5rem;
   margin-left: 1rem;
+  font-family: Arial;
 `;
 
 const CloseButton = styled.div`
@@ -27,10 +28,14 @@ const CloseButton = styled.div`
   cursor: pointer;
   color: ${({ theme }) => theme.secondary};
 `;
+const ButtonWrapper = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+`;
 
 export const SaveModal = ({ closeModal }) => {
   const { character, currentSave } = useContext(Context);
-  console.log(currentSave);
   const [saveName, setSaveName] = useState();
   const saveCharacter = () => {
     console.log(character);
@@ -52,15 +57,17 @@ export const SaveModal = ({ closeModal }) => {
             onChange={(event) => handleChange(event)}
             value={saveName || currentSave}
           />
-          <SumbmitButton onClick={() => saveCharacter()}>Submit</SumbmitButton>
         </SaveForm>
-        <ThemeButton
-          as="a"
-          href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(character))}`}
-          download={`${saveName || currentSave}.json`}
-        >
-          Export
-        </ThemeButton>
+        <ButtonWrapper>
+          <SumbmitButton onClick={() => saveCharacter()}>Save</SumbmitButton>
+          <SumbmitButton
+            as="a"
+            href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(character))}`}
+            download={`${saveName || currentSave}.json`}
+          >
+            Export
+          </SumbmitButton>
+        </ButtonWrapper>
       </Box>
     </ModalBackdrop>
   );

@@ -181,6 +181,9 @@ export const ThemeButton = styled.button`
   padding: 0.5rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
   z-index: 100;
+  font-size: 0.8rem;
+  text-decoration: none;
+  line-height: 1.2rem;
 
   &:hover {
     background: ${({ theme }) => theme.panel};
