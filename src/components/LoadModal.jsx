@@ -34,8 +34,9 @@ const LoadSelect = styled(StatField)`
 `;
 
 export const LoadModal = ({ setShowLoadModal }) => {
-  const { setCharacter, setCurrentSave } = useContext(Context);
   const currentSaveData = JSON.parse(localStorage.getItem('myriad'));
+  if (!currentSaveData) return null;
+  const { setCharacter, setCurrentSave } = useContext(Context);
   const [selection, setSelection] = useState('new');
   const handleChange = (event) => {
     console.log(event.target.value);
