@@ -11,9 +11,10 @@ export const emptyCharacter = {
     strength: '0',
     life: '0',
     intelligence: '0',
-    sanity: '0',
+    mana: '0',
     dexterity: '0',
-    experience: '0'
+    experience: '0',
+    sanity: '0'
   },
   skills: [
     {
