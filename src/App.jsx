@@ -14,7 +14,7 @@ import { lightTheme, darkTheme } from './styles/Themes';
 
 export const App = () => {
   const [character, setCharacter] = useState(emptyCharacter);
-  const [showLoadModal, setShowLoadModal] = useState(true);
+  const [showLoadModal, setShowLoadModal] = useState(false);
   const [currentSave, setCurrentSave] = useState(null);
 
   const value = useMemo(
