@@ -121,7 +121,7 @@ const TextLabel = styled.label`
   align-self: flex-start;
 `;
 
-export const Panel = ({ section, sectionType, pods }) => {
+const Panel = ({ section, sectionType, pods }) => {
   return (
     <Box>
       <BoxHeader>
@@ -172,3 +172,5 @@ export const Panel = ({ section, sectionType, pods }) => {
     </Box>
   );
 };
+
+export default Panel;

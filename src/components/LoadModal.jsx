@@ -33,7 +33,7 @@ const LoadSelect = styled(StatField)`
   width: 10rem;
 `;
 
-export const LoadModal = ({ setShowLoadModal }) => {
+const LoadModal = ({ setShowLoadModal }) => {
   const currentSaveData = JSON.parse(localStorage.getItem('myriad'));
   if (!currentSaveData) return null;
   const { setCharacter, setCurrentSave } = useContext(Context);
@@ -70,3 +70,5 @@ export const LoadModal = ({ setShowLoadModal }) => {
     </ModalBackdrop>
   );
 };
+
+export default LoadModal;

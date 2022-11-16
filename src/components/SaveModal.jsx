@@ -34,7 +34,7 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-export const SaveModal = ({ closeModal }) => {
+const SaveModal = ({ closeModal }) => {
   const { character, currentSave } = useContext(Context);
   const [saveName, setSaveName] = useState();
   const saveCharacter = () => {
@@ -72,3 +72,5 @@ export const SaveModal = ({ closeModal }) => {
     </ModalBackdrop>
   );
 };
+
+export default SaveModal;

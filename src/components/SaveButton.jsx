@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Context } from '../context/context';
 import { ThemeButton } from '../styles/sharedStyles';
 
-import { SaveModal } from './SaveModal';
+import SaveModal from './SaveModal';
 
 const Button = styled(ThemeButton)`
   position: fixed;
@@ -13,7 +13,7 @@ const Button = styled(ThemeButton)`
   z-index: 9998;
 `;
 
-export const SaveButton = () => {
+const SaveButton = () => {
   const [showModal, setShowModal] = useState(false);
   const closeModal = () => setShowModal(false);
   const { character } = useContext(Context);
@@ -25,3 +25,5 @@ export const SaveButton = () => {
     </>
   );
 };
+
+export default SaveButton;

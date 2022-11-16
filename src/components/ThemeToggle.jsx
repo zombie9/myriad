@@ -10,8 +10,10 @@ const DarkModeToggle = styled(ThemeButton)`
   z-index: 9998;
 `;
 
-export const ThemeToggle = ({ theme, toggleTheme }) => {
+const ThemeToggle = ({ theme, toggleTheme }) => {
   return (
     <DarkModeToggle onClick={toggleTheme}>{theme === 'dark' ? 'Light' : 'Dark'}</DarkModeToggle>
   );
 };
+
+export default ThemeToggle;

@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   max-width: 960px;
 `;
 
-export const Container = () => {
+const Container = () => {
   return (
     <StyledContainer>
       <Persona />
@@ -24,3 +24,5 @@ export const Container = () => {
     </StyledContainer>
   );
 };
+
+export default Container;

@@ -21,10 +21,12 @@ const StyledHeader = styled.header`
   }
 `;
 
-export const Header = () => {
+const Header = () => {
   return (
     <StyledHeader>
       <code>M Y R I A D</code>
     </StyledHeader>
   );
 };
+
+export default Header

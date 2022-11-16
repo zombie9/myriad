@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import Montserrat from '../assets/fonts/Montserrat-Regular.ttf';
 import RobotoMono from '../assets/fonts/RobotoMono-Light.ttf';
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Roboto Mono";
     font-style: normal;
@@ -77,4 +77,3 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default GlobalStyles;

@@ -7,10 +7,22 @@ export const Box = styled.div`
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
   font-size: 1rem;
+  width: 100%;
 
   @media only screen and (min-width: 720px) {
     padding: 2rem;
   }
+`;
+
+export const AuthBox = styled(Box)`
+  max-width: 560px;
+`;
+
+export const SubmitButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
 `;
 
 export const BoxHeader = styled.h2`
@@ -178,8 +190,8 @@ export const ThemeButton = styled.button`
   color: ${({ theme }) => theme.primary};
   border: 1px solid ${({ theme }) => theme.mid};
   cursor: pointer;
-  padding: 0.5rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   z-index: 100;
   font-size: 0.8rem;
   text-decoration: none;
@@ -188,4 +200,24 @@ export const ThemeButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.panel};
   }
+`;
+
+export const Heading = styled.div`
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
+export const AuthField = styled.input`
+  @media only screen and (min-width: 420px) {
+    width: 24em;
+  }
+
+  &:invalid {
+    border: 1px solid red;
+  }
+`;
+
+export const ErrorBox = styled.div`
+  color: red;
 `;
