@@ -21,10 +21,8 @@ const Login = () => {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { logIn, currentUser } = useAuth();
+  const { logIn } = useAuth();
   const navigate = useNavigate();
-
-  console.log('currentUser', currentUser);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +30,6 @@ const Login = () => {
       setError('');
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      console.log('currentUser', emailRef.current.value, passwordRef.current.value);
       navigate('/');
     } catch (error) {
       console.error(error);

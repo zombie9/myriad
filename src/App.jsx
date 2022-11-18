@@ -1,21 +1,21 @@
 import React, { useState, useMemo } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import { Context } from './context/context';
-import { emptyCharacter } from './data/emptyCharacter';
-import { useDarkMode } from './hooks/useDarkMode';
-import { GlobalStyles } from './styles/GlobalStyles';
-import { lightTheme, darkTheme } from './styles/Themes';
-import { AuthProvider } from './context/authContext';
+import { ThemeProvider } from 'styled-components';
 
 import Container from './components/Container';
 import Header from './components/Header';
 import LoadModal from './components/LoadModal';
 import SaveButton from './components/SaveButton';
 import ThemeToggle from './components/ThemeToggle';
-import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
+import PrivateRoute from './components/auth/PrivateRoute';
+import SignUp from './components/auth/SignUp';
+import { AuthProvider } from './context/authContext';
+import { Context } from './context/context';
+import { emptyCharacter } from './data/emptyCharacter';
+import { useDarkMode } from './hooks/useDarkMode';
+import { GlobalStyles } from './styles/GlobalStyles';
+import { lightTheme, darkTheme } from './styles/Themes';
 
 export const App = () => {
   const [character, setCharacter] = useState(emptyCharacter);
@@ -41,9 +41,16 @@ export const App = () => {
           <Header />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Container />} />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Container />
+                  </PrivateRoute>
+                }
+              />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/signin" element={<Login />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
