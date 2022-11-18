@@ -18,6 +18,12 @@ export const AuthBox = styled(Box)`
   max-width: 560px;
 `;
 
+export const CenterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+`;
+
 export const SubmitButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -64,7 +70,7 @@ export const Field = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
 `;
 
 export const PersonaDescriptionField = styled.div`
@@ -205,7 +211,7 @@ export const ThemeButton = styled.button`
 export const Heading = styled.div`
   text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const AuthField = styled.input`

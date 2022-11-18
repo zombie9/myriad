@@ -39,6 +39,16 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto Mono';
   }
 
+  a {
+    color: ${({ theme }) => theme.mid};
+    text-decoration: none;
+
+    &:hover {
+      color: ${({ theme }) => theme.primary};
+      text-decoration: underline;
+    }
+  }
+
   input, textarea, select {
     padding: 0.3rem;
     width: 100%;

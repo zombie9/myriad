@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../context/authContext';
 import {
@@ -15,36 +15,35 @@ import {
   CenterWrapper
 } from '../../styles/sharedStyles';
 
-const SignUp = () => {
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signUp, currentUser } = useAuth();
+  const { logIn, currentUser } = useAuth();
+  const navigate = useNavigate();
 
   console.log('currentUser', currentUser);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords did not match');
-    }
     try {
       setError('');
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
+      await logIn(emailRef.current.value, passwordRef.current.value);
+      console.log('currentUser', emailRef.current.value, passwordRef.current.value);
+      navigate('/');
     } catch (error) {
-      setError('Failed to create account');
+      console.error(error);
+      setError('Failed to log in');
     }
     setLoading(false);
   };
-
   return (
     <ModalBackdrop>
       <AuthBox>
-        <Heading>S I G N U P</Heading>
+        <Heading>L O G I N</Heading>
         <Field>
           <TextLabel>Email</TextLabel>
           <AuthField type="email" ref={emailRef} />
@@ -53,10 +52,6 @@ const SignUp = () => {
           <TextLabel>Password</TextLabel>
           <AuthField type="password" ref={passwordRef} />
         </Field>
-        <Field>
-          <TextLabel>Confirm Password</TextLabel>
-          <AuthField type="password" ref={passwordConfirmRef} />
-        </Field>
         <SubmitButtonWrapper>
           <ErrorBox>{error && error}</ErrorBox>
           <ThemeButton disabled={loading} type="submit" onClick={handleSubmit}>
@@ -64,11 +59,11 @@ const SignUp = () => {
           </ThemeButton>
         </SubmitButtonWrapper>
         <CenterWrapper>
-          <Link to="/signin">Already have an account? Log In</Link>
+          <Link to="/signup">Need an account? Sign Up</Link>
         </CenterWrapper>
       </AuthBox>
     </ModalBackdrop>
   );
 };
 
-export default SignUp;
+export default Login;
