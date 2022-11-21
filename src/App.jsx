@@ -4,10 +4,6 @@ import { ThemeProvider } from 'styled-components';
 
 import Container from './components/Container';
 import Header from './components/Header';
-import LoadModal from './components/LoadModal';
-import MenuButton from './components/MenuButton';
-// import SaveButton from './components/SaveButton';
-// import ThemeToggle from './components/ThemeToggle';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import SignUp from './components/auth/SignUp';
@@ -20,7 +16,6 @@ import { lightTheme, darkTheme } from './styles/Themes';
 
 export const App = () => {
   const [character, setCharacter] = useState(emptyCharacter);
-  const [showLoadModal, setShowLoadModal] = useState(true);
   const [currentSave, setCurrentSave] = useState(null);
 
   const value = useMemo(
@@ -36,11 +31,7 @@ export const App = () => {
       <Context.Provider value={value}>
         <ThemeProvider theme={themeMode}>
           <GlobalStyles />
-          {showLoadModal && <LoadModal setShowLoadModal={setShowLoadModal} />}
-          {/* <SaveButton />
-          <ThemeToggle theme={theme} toggleTheme={toggleTheme} /> */}
-          <MenuButton />
-          <Header />
+          <Header theme={theme} toggleTheme={toggleTheme} />
           <BrowserRouter>
             <Routes>
               <Route

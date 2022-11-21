@@ -7,7 +7,6 @@ export const Box = styled.div`
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
   font-size: 1rem;
-  width: 100%;
 
   @media only screen and (min-width: 720px) {
     padding: 2rem;
@@ -198,7 +197,6 @@ export const ThemeButton = styled.button`
   cursor: pointer;
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-  z-index: 100;
   font-size: 0.8rem;
   text-decoration: none;
   line-height: 1.2rem;

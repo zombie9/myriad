@@ -33,6 +33,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
     transition: background-color 0.5s linear;
     font-family: 'Montserrat';
+
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
   }
 
   code {
@@ -86,4 +90,3 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 `;
-
