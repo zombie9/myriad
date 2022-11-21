@@ -64,7 +64,7 @@ const SignUp = () => {
           </ThemeButton>
         </SubmitButtonWrapper>
         <CenterWrapper>
-          <Link to="/signin">Already have an account? Log In</Link>
+          <Link to="/login">Already have an account? Log In</Link>
         </CenterWrapper>
       </AuthBox>
     </ModalBackdrop>

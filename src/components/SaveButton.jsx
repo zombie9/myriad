@@ -20,7 +20,9 @@ const SaveButton = () => {
   console.log(character);
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>Save</Button>
+      <Button onClick={() => setShowModal(true)}>
+        <code>SAVE</code>
+      </Button>
       {showModal && <SaveModal closeModal={closeModal} />}
     </>
   );

@@ -11,8 +11,11 @@ const DarkModeToggle = styled(ThemeButton)`
 `;
 
 const ThemeToggle = ({ theme, toggleTheme }) => {
+  console.log('theme', theme);
   return (
-    <DarkModeToggle onClick={toggleTheme}>{theme === 'dark' ? 'Light' : 'Dark'}</DarkModeToggle>
+    <DarkModeToggle onClick={toggleTheme}>
+      <code>{theme === 'light' ? 'DARK' : 'LIGHT'}</code>
+    </DarkModeToggle>
   );
 };
 

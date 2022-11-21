@@ -6,7 +6,7 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 1rem 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   position: fixed;
@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
   z-index: 9997;
 
   @media only screen and (min-width: 720px) {
-    align-items: center;
+    font-size: 2rem;
   }
 `;
 

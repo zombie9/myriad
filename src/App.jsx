@@ -5,8 +5,9 @@ import { ThemeProvider } from 'styled-components';
 import Container from './components/Container';
 import Header from './components/Header';
 import LoadModal from './components/LoadModal';
-import SaveButton from './components/SaveButton';
-import ThemeToggle from './components/ThemeToggle';
+import MenuButton from './components/MenuButton';
+// import SaveButton from './components/SaveButton';
+// import ThemeToggle from './components/ThemeToggle';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import SignUp from './components/auth/SignUp';
@@ -28,7 +29,7 @@ export const App = () => {
   );
 
   const [theme, toggleTheme] = useDarkMode();
-  const themeMode = theme === 'dark' ? lightTheme : darkTheme;
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
     <AuthProvider>
@@ -36,8 +37,9 @@ export const App = () => {
         <ThemeProvider theme={themeMode}>
           <GlobalStyles />
           {showLoadModal && <LoadModal setShowLoadModal={setShowLoadModal} />}
-          <SaveButton />
-          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          {/* <SaveButton />
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} /> */}
+          <MenuButton />
           <Header />
           <BrowserRouter>
             <Routes>
