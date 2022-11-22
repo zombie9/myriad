@@ -60,7 +60,6 @@ const SaveModal = ({ closeModal }) => {
         <CloseButton onClick={() => closeModal()}>
           <X size={20} />
         </CloseButton>
-        {/* eslint-disable-next-line prettier/prettier */}
         <Heading>S A V E</Heading>
         <Field>
           <TextLabel>Name:</TextLabel>
@@ -72,16 +71,6 @@ const SaveModal = ({ closeModal }) => {
             <code>S U B M I T</code>
           </ThemeButton>
         </SubmitButtonWrapper>
-        {/* <ButtonWrapper>
-          <SumbmitButton onClick={() => saveCharacter()}>Save</SumbmitButton>
-          <SumbmitButton
-            as="a"
-            href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(character))}`}
-            download={`${saveName || currentSave}.json`}
-          >
-            Export
-          </SumbmitButton>
-        </ButtonWrapper> */}
       </AuthBox>
     </ModalBackdrop>
   );

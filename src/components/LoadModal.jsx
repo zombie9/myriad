@@ -1,24 +1,22 @@
-import React, { useState, useContext } from 'react';
+import { doc, setDoc } from 'firebase/firestore';
+import React, { useContext, useState, useRef } from 'react';
 import { X } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 
+import { useAuth } from '../context/authContext';
 import { Context } from '../context/context';
-import { ModalBackdrop, Box, ThemeButton, StatField } from '../styles/sharedStyles';
-
-const LoadForm = styled.div`
-  text-align: left;
-  display: flex;
-  align-items: center;
-`;
-
-const LoadLabel = styled.div`
-  margin-right: 1rem;
-`;
-
-const SumbmitButton = styled(ThemeButton)`
-  padding: 0.3rem 0.5rem;
-  margin-left: 1rem;
-`;
+import { db } from '../firebase';
+import {
+  ModalBackdrop,
+  AuthBox,
+  ThemeButton,
+  AuthField,
+  Heading,
+  Field,
+  TextLabel,
+  SubmitButtonWrapper,
+  ErrorBox
+} from '../styles/sharedStyles';
 
 const CloseButton = styled.div`
   position: absolute;
@@ -28,45 +26,41 @@ const CloseButton = styled.div`
   color: ${({ theme }) => theme.secondary};
 `;
 
-const LoadSelect = styled(StatField)`
-  margin: 0;
-  width: 10rem;
-`;
+const LoadModal = ({ closeModal }) => {
+  const { currentUser } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-const LoadModal = ({ setShowLoadModal }) => {
-  const currentSaveData = JSON.parse(localStorage.getItem('myriad'));
-  if (!currentSaveData) return null;
-  const { setCharacter, setCurrentSave } = useContext(Context);
-  const [selection, setSelection] = useState('new');
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setSelection(event.target.value);
-  };
-  const handleLoad = () => {
-    if (Object.keys(currentSaveData).includes(selection)) {
-      setCharacter(currentSaveData[selection]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log('success!');
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      setError('Failed to save character');
     }
-    setCurrentSave(selection);
-    setShowLoadModal(false);
+    setLoading(false);
   };
 
   return (
     <ModalBackdrop>
-      <Box>
-        <CloseButton onClick={() => setShowLoadModal(false)}>
+      <AuthBox>
+        <CloseButton onClick={() => closeModal()}>
           <X size={20} />
         </CloseButton>
-        <LoadForm>
-          <LoadLabel>Select character:</LoadLabel>
-          <LoadSelect onChange={(event) => handleChange(event)}>
-            <option value="new">New Character</option>
-            {Object.entries(currentSaveData).map(([name]) => {
-              return <option key={name}>{name}</option>;
-            })}
-          </LoadSelect>
-          <SumbmitButton onClick={handleLoad}>Load</SumbmitButton>
-        </LoadForm>
-      </Box>
+        <Heading>L O A D</Heading>
+        <Field>
+          <TextLabel>Name:</TextLabel>
+          <AuthField ref={nameRef} type="text" />
+        </Field>
+        <SubmitButtonWrapper>
+          <ErrorBox>{error && error}</ErrorBox>
+          <ThemeButton disabled={loading} type="submit" onClick={handleSubmit}>
+            <code>S U B M I T</code>
+          </ThemeButton>
+        </SubmitButtonWrapper>
+      </AuthBox>
     </ModalBackdrop>
   );
 };
