@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { Context } from '../context/context';
-import { skillsFields } from '../data/skills';
-import { Box, BoxHeader, BoxBody, SinglePod } from '../styles/sharedStyles';
+import { Context } from '../../context/context';
+import { skillsFields } from '../../data/skills';
+import { Box, BoxHeader, BoxBody, SinglePod } from '../../styles/sharedStyles';
 
 import AddSkill from './AddSkill';
 import SkillRow from './SkillRow';

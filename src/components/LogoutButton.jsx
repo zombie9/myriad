@@ -1,21 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { Context } from '../context/context';
+import { useAuth } from '../context/authContext';
 import { ThemeButton } from '../styles/sharedStyles';
 
-import SaveModal from './SaveModal';
-
 const LogoutButton = () => {
-  const [showModal, setShowModal] = useState(false);
-  const closeModal = () => setShowModal(false);
-  const { character } = useContext(Context);
-  console.log(character);
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
-      <ThemeButton onClick={() => setShowModal(true)}>
+      <ThemeButton onClick={() => handleLogout()}>
         <code>LOGOUT</code>
       </ThemeButton>
-      {showModal && <SaveModal closeModal={closeModal} />}
     </>
   );
 };

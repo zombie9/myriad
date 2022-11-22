@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
 
-import { Context } from '../context/context';
-import { Box, BoxHeader, BoxBody } from '../styles/sharedStyles';
+import { Context } from '../../context/context';
+import { Box, BoxHeader, BoxBody } from '../../styles/sharedStyles';
 
-const Notes = () => {
+const Equipment = () => {
   const { character, setCharacter } = useContext(Context);
   const handleChange = (event) => {
     setCharacter({
       ...character,
-      notes: event.target.value
+      equipment: event.target.value
     });
   };
 
   return (
     <Box>
       <BoxHeader>
-        <code>Notes:</code>
+        <code>Equipment:</code>
       </BoxHeader>
       <BoxBody>
         <textarea
-          rows={character.notes.split('\n').length + 1}
+          rows={character.equipment.split('\n').length + 1}
           spellCheck="false"
-          value={character.notes}
+          value={character.equipment}
           onChange={(event) => handleChange(event)}
         />
       </BoxBody>
@@ -29,4 +29,4 @@ const Notes = () => {
   );
 };
 
-export default Notes;
+export default Equipment;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import { Context } from '../context/context';
-import { statFields } from '../data/stats';
+import { Context } from '../../context/context';
+import { statFields } from '../../data/stats';
 import {
   Box,
   BoxHeader,
@@ -10,7 +10,7 @@ import {
   FieldLabel,
   DualPod,
   StatBlock
-} from '../styles/sharedStyles';
+} from '../../styles/sharedStyles';
 
 const Stats = () => {
   const { character, setCharacter } = useContext(Context);

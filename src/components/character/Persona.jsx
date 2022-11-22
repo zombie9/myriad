@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import { Context } from '../context/context';
-import { personaFields } from '../data/persona';
+import { Context } from '../../context/context';
+import { personaFields } from '../../data/persona';
 import {
   Box,
   BoxHeader,
@@ -10,7 +10,7 @@ import {
   Field,
   TextLabel,
   PersonaDescriptionField
-} from '../styles/sharedStyles';
+} from '../../styles/sharedStyles';
 
 const Persona = () => {
   const { character, setCharacter } = useContext(Context);

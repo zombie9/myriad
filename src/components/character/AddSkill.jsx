@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { PlusCircle } from 'react-bootstrap-icons';
 
-import { Context } from '../context/context';
-import { Button } from '../styles/sharedStyles';
+import { Context } from '../../context/context';
+import { Button } from '../../styles/sharedStyles';
 
 const AddSkill = () => {
   const { character, setCharacter } = useContext(Context);

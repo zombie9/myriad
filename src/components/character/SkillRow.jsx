@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 
-import { MACRO_PREFIX, stats, skillStatOptions } from '../constants';
-import { Context } from '../context/context';
+import { MACRO_PREFIX, stats, skillStatOptions } from '../../constants';
+import { Context } from '../../context/context';
 import {
   SkillBlock,
   Row,
@@ -12,7 +12,7 @@ import {
   LevelField,
   SkillLabel,
   DiceBox
-} from '../styles/sharedStyles';
+} from '../../styles/sharedStyles';
 
 const D20 = styled.svg`
   transform: rotate(0deg);

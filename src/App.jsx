@@ -2,11 +2,11 @@ import React, { useState, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import Container from './components/Container';
 import Header from './components/Header';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import SignUp from './components/auth/SignUp';
+import Container from './components/character/Container';
 import { AuthProvider } from './context/authContext';
 import { Context } from './context/context';
 import { emptyCharacter } from './data/emptyCharacter';
@@ -31,8 +31,8 @@ export const App = () => {
       <Context.Provider value={value}>
         <ThemeProvider theme={themeMode}>
           <GlobalStyles />
-          <Header theme={theme} toggleTheme={toggleTheme} />
           <BrowserRouter>
+            <Header theme={theme} toggleTheme={toggleTheme} />
             <Routes>
               <Route
                 path="/"
