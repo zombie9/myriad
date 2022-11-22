@@ -1,25 +1,22 @@
-import React, { useContext, useState } from 'react';
+import { doc, setDoc } from 'firebase/firestore';
+import React, { useContext, useState, useRef } from 'react';
 import { X } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 
+import { useAuth } from '../context/authContext';
 import { Context } from '../context/context';
-import { ModalBackdrop, Box, ThemeButton } from '../styles/sharedStyles';
-
-const SaveForm = styled.div`
-  text-align: left;
-  display: flex;
-  align-items: center;
-`;
-
-const SaveLabel = styled.div`
-  margin-right: 1rem;
-`;
-
-const SumbmitButton = styled(ThemeButton)`
-  padding: 0.3rem 0.5rem;
-  margin-left: 1rem;
-  font-family: Arial;
-`;
+import { db } from '../firebase';
+import {
+  ModalBackdrop,
+  AuthBox,
+  ThemeButton,
+  AuthField,
+  Heading,
+  Field,
+  TextLabel,
+  SubmitButtonWrapper,
+  ErrorBox
+} from '../styles/sharedStyles';
 
 const CloseButton = styled.div`
   position: absolute;
@@ -28,37 +25,54 @@ const CloseButton = styled.div`
   cursor: pointer;
   color: ${({ theme }) => theme.secondary};
 `;
-const ButtonWrapper = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-end;
-`;
 
 const SaveModal = ({ closeModal }) => {
-  const { character, currentSave } = useContext(Context);
-  const [saveName, setSaveName] = useState();
-  const saveCharacter = () => {
-    console.log(character);
-    const currentSaveData = JSON.parse(localStorage.getItem('myriad')) || {};
-    const saveData = { ...currentSaveData, [saveName]: character };
-    localStorage.setItem('myriad', JSON.stringify(saveData));
+  const { character } = useContext(Context);
+  const { currentUser } = useAuth();
+  const nameRef = useRef();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      setError('');
+      setLoading(true);
+      const docRef = doc(db, 'characters', nameRef.current.value);
+      console.log('docRef', docRef);
+      const docToSave = {
+        ...character,
+        userId: currentUser.uid
+      };
+      await setDoc(docRef, docToSave);
+      console.log('success!');
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      setError('Failed to save character');
+    }
+    setLoading(false);
   };
-  const handleChange = (event) => setSaveName(event.target.value);
+
   return (
     <ModalBackdrop>
-      <Box>
+      <AuthBox>
         <CloseButton onClick={() => closeModal()}>
           <X size={20} />
         </CloseButton>
-        <SaveForm>
-          <SaveLabel>Name:</SaveLabel>
-          <input
-            type="text"
-            onChange={(event) => handleChange(event)}
-            value={saveName || currentSave}
-          />
-        </SaveForm>
-        <ButtonWrapper>
+        {/* eslint-disable-next-line prettier/prettier */}
+        <Heading>S A V E</Heading>
+        <Field>
+          <TextLabel>Name:</TextLabel>
+          <AuthField ref={nameRef} type="text" />
+        </Field>
+        <SubmitButtonWrapper>
+          <ErrorBox>{error && error}</ErrorBox>
+          <ThemeButton disabled={loading} type="submit" onClick={handleSubmit}>
+            <code>S U B M I T</code>
+          </ThemeButton>
+        </SubmitButtonWrapper>
+        {/* <ButtonWrapper>
           <SumbmitButton onClick={() => saveCharacter()}>Save</SumbmitButton>
           <SumbmitButton
             as="a"
@@ -67,8 +81,8 @@ const SaveModal = ({ closeModal }) => {
           >
             Export
           </SumbmitButton>
-        </ButtonWrapper>
-      </Box>
+        </ButtonWrapper> */}
+      </AuthBox>
     </ModalBackdrop>
   );
 };
