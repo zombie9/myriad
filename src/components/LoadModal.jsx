@@ -35,7 +35,7 @@ const CharacterButton = styled(ThemeButton)`
   min-width: 320px;
 `;
 
-const LoadModal = ({ closeModal }) => {
+const LoadModal = ({ closeModal, setMenuIsOpen }) => {
   const [characterList, setCharacterList] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -56,7 +56,7 @@ const LoadModal = ({ closeModal }) => {
         });
       });
       if (list.length < 1) {
-        setError('Could not retrieve saved characters.');
+        setError('Could not retrieve any saved characters.');
         return;
       }
       setCharacterList(list);
@@ -68,6 +68,7 @@ const LoadModal = ({ closeModal }) => {
   const handleLoad = (id) => {
     const characterToLoad = characterList.find((char) => char.id === id);
     setCharacter(characterToLoad);
+    setMenuIsOpen(false);
     closeModal();
   };
 

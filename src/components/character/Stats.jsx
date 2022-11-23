@@ -14,7 +14,7 @@ import {
 
 const Stats = () => {
   const { character, setCharacter } = useContext(Context);
-  const handleChange = (event, key) => {
+  const handleChange = (event, { key }) => {
     setCharacter({
       ...character,
       stats: {
@@ -30,15 +30,15 @@ const Stats = () => {
         <code>{`${statFields.title}:`}</code>
       </BoxHeader>
       <DualPod>
-        {Object.keys(character.stats).map((key, index) => {
+        {statFields.fields.map((field, index) => {
           return (
             <StatBlock key={index}>
-              <Field key={key}>
-                <FieldLabel>{key}</FieldLabel>
+              <Field key={field.name}>
+                <FieldLabel>{field.name}</FieldLabel>
                 <NumberField
                   spellCheck="false"
-                  value={character.stats[key]}
-                  onChange={(event) => handleChange(event, key)}
+                  value={character.stats[field.name]}
+                  onChange={(event) => handleChange(event, { key: field.name })}
                 />
               </Field>
             </StatBlock>

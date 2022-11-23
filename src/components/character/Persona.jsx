@@ -14,7 +14,7 @@ import {
 
 const Persona = () => {
   const { character, setCharacter } = useContext(Context);
-  const handleChange = (event, key) => {
+  const handleChange = (event, { key }) => {
     setCharacter({
       ...character,
       persona: {
@@ -31,16 +31,16 @@ const Persona = () => {
       </BoxHeader>
       <BoxBody>
         <SinglePod>
-          {Object.keys(character.persona).map((key) => {
+          {personaFields.fields.map((field) => {
             return (
-              <Field key={key}>
-                {key !== 'description' && (
+              <Field key={field.name}>
+                {field.name !== 'description' && (
                   <>
-                    <TextLabel>{key}</TextLabel>
+                    <TextLabel>{field.name}</TextLabel>
                     <input
                       type="text"
-                      value={character.persona[key]}
-                      onChange={(event) => handleChange(event, key)}
+                      value={character.persona[field.name]}
+                      onChange={(event) => handleChange(event, { key: field.name })}
                     />
                   </>
                 )}

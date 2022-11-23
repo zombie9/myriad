@@ -60,9 +60,9 @@ const Header = ({ theme, toggleTheme }) => {
         <MenuButton setMenuIsOpen={setMenuIsOpen} />
       </StyledHeader>
       <MenuBar open={menuIsOpen}>
-        <SaveButton />
-        <LoadButton />
-        <LogoutButton />
+        <SaveButton setMenuIsOpen={setMenuIsOpen} />
+        <LoadButton setMenuIsOpen={setMenuIsOpen} />
+        <LogoutButton setMenuIsOpen={setMenuIsOpen} />
       </MenuBar>
     </>
   );
