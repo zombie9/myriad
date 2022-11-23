@@ -1,5 +1,5 @@
-import { doc, setDoc } from 'firebase/firestore';
-import React, { useContext, useState, useRef } from 'react';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useContext, useEffect, useState } from 'react';
 import { X } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 
@@ -9,13 +9,10 @@ import { db } from '../firebase';
 import {
   ModalBackdrop,
   AuthBox,
-  ThemeButton,
-  AuthField,
   Heading,
-  Field,
-  TextLabel,
   SubmitButtonWrapper,
-  ErrorBox
+  ErrorBox,
+  ThemeButton
 } from '../styles/sharedStyles';
 
 const CloseButton = styled.div`
@@ -26,22 +23,55 @@ const CloseButton = styled.div`
   color: ${({ theme }) => theme.secondary};
 `;
 
-const LoadModal = ({ closeModal }) => {
-  const { currentUser } = useAuth();
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+const CharacterRow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+`;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      console.log('success!');
-      closeModal();
-    } catch (error) {
-      console.error(error);
-      setError('Failed to save character');
-    }
-    setLoading(false);
+const CharacterButton = styled(ThemeButton)`
+  width: 100%;
+  min-width: 320px;
+`;
+
+const LoadModal = ({ closeModal }) => {
+  const [characterList, setCharacterList] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuth();
+  const { setCharacter } = useContext(Context);
+  const currentUserId = currentUser.uid;
+
+  useEffect(() => {
+    const unsubscribe = async () => {
+      const collectionRef = collection(db, 'characters');
+      const q = query(collectionRef, where('userId', '==', currentUserId));
+      const snap = await getDocs(q);
+      let list = [];
+      snap.forEach((doc) => {
+        list.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      if (list.length < 1) {
+        setError('Could not retrieve saved characters.');
+        return;
+      }
+      setCharacterList(list);
+      setLoading(false);
+    };
+    return unsubscribe;
+  }, []);
+
+  const handleLoad = (id) => {
+    const characterToLoad = characterList.find((char) => char.id === id);
+    setCharacter(characterToLoad);
+    closeModal();
   };
+
+  console.log('characterList', characterList);
 
   return (
     <ModalBackdrop>
@@ -50,15 +80,19 @@ const LoadModal = ({ closeModal }) => {
           <X size={20} />
         </CloseButton>
         <Heading>L O A D</Heading>
-        <Field>
-          <TextLabel>Name:</TextLabel>
-          <AuthField ref={nameRef} type="text" />
-        </Field>
+        <div style={{ paddingBottom: '0.5rem' }}>Select your character:</div>
+        {!loading &&
+          characterList.map((char) => {
+            return (
+              <CharacterRow key={char.id}>
+                <CharacterButton onClick={() => handleLoad(char.id)}>
+                  <code>{char.id.toUpperCase()}</code>
+                </CharacterButton>
+              </CharacterRow>
+            );
+          })}
         <SubmitButtonWrapper>
           <ErrorBox>{error && error}</ErrorBox>
-          <ThemeButton disabled={loading} type="submit" onClick={handleSubmit}>
-            <code>S U B M I T</code>
-          </ThemeButton>
         </SubmitButtonWrapper>
       </AuthBox>
     </ModalBackdrop>
