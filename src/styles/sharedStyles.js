@@ -125,7 +125,7 @@ export const StatBlock = styled.li`
 `;
 
 export const NumberField = styled.input`
-  width: 4rem;
+  width: 6rem;
   text-align: center;
 `;
 

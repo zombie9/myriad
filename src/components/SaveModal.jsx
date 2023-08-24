@@ -39,11 +39,11 @@ const SaveModal = ({ closeModal }) => {
       setError('');
       setLoading(true);
       const docRef = doc(db, 'characters', nameRef.current.value);
-      console.log('docRef', docRef);
       const docToSave = {
         ...character,
         userId: currentUser.uid
       };
+      delete docToSave.id;
       await setDoc(docRef, docToSave);
       console.log('success!');
       closeModal();
@@ -63,7 +63,7 @@ const SaveModal = ({ closeModal }) => {
         <Heading>S A V E</Heading>
         <Field>
           <TextLabel>Name:</TextLabel>
-          <AuthField ref={nameRef} type="text" />
+          <AuthField ref={nameRef} type="text" value={character.id || ''} />
         </Field>
         <SubmitButtonWrapper>
           <ErrorBox>{error && error}</ErrorBox>

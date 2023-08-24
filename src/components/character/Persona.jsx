@@ -53,7 +53,7 @@ const Persona = () => {
               rows={character.persona.description.split('\n').length + 1}
               spellCheck="false"
               value={character.persona.description}
-              onChange={(event) => handleChange(event, 'description')}
+              onChange={(event) => handleChange(event, { key: 'description' })}
             />
           </PersonaDescriptionField>
         </SinglePod>
