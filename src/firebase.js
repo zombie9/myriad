@@ -13,6 +13,9 @@ const app = initializeApp({
 
 export const auth = getAuth();
 
+console.log('app', app);
+console.log(import.meta.env.VITE_FIREBASE_AUTH_DOMAIN);
+
 export const db = getFirestore(app);
 
 export default app;
