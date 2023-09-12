@@ -63,7 +63,7 @@ const SaveModal = ({ closeModal }) => {
         <Heading>S A V E</Heading>
         <Field>
           <TextLabel>Name:</TextLabel>
-          <AuthField ref={nameRef} type="text" value={character.id || ''} />
+          <AuthField ref={nameRef} type="text" defaultValue={character.id || ''} />
         </Field>
         <SubmitButtonWrapper>
           <ErrorBox>{error && error}</ErrorBox>
