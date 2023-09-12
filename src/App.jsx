@@ -15,6 +15,10 @@ import { GlobalStyles } from './styles/GlobalStyles';
 import { lightTheme, darkTheme } from './styles/Themes';
 
 export const App = () => {
+  console.log(
+    'import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,',
+    import.meta.env.VITE_FIREBASE_AUTH_DOMAIN
+  );
   const [character, setCharacter] = useState(emptyCharacter);
   const [currentSave, setCurrentSave] = useState(null);
 
