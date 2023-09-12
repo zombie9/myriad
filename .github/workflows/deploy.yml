@@ -24,6 +24,10 @@ jobs:
         run: |
           echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
 
+      -name: 'Print env file'
+        run: |
+          cat .env
+
       - name: Build project
         run: npm run build
 
