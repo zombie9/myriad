@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
   font-size: 1.5rem;
   padding: 1rem 0;
   padding-right: 1rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 0;
   left: 0;
