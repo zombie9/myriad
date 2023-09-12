@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
+          cat .env
+
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -49,8 +54,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
-      - name: 'Create env file'
+      - name: 'list files'
         run: |
-          echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
-          cat .env
-
+          ls -la
