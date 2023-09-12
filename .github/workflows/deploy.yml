@@ -56,4 +56,5 @@ jobs:
 
       - name: 'list files'
         run: |
+          cd dist
           ls -la
