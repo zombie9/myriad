@@ -77,6 +77,7 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
   };
 
   console.log('characterList', characterList);
+  console.log('loading', loading);
 
   return (
     <ModalBackdrop>
@@ -86,7 +87,7 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
         </CloseButton>
         <Heading>L O A D</Heading>
         <div style={{ paddingBottom: '0.5rem' }}>Select your character:</div>
-        {!loading &&
+        {characterList > 0 &&
           characterList.map((char) => {
             return (
               <CharacterRow key={char.id}>
