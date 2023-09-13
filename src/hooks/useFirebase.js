@@ -18,7 +18,7 @@ export const useFirebase = (currentUser) => {
       try {
         const currentUserId = currentUser.uid;
         const collectionRef = await collection(db, 'characters');
-        const q = await query(collectionRef, where('userId', '==', currentUserId));
+        const q = query(collectionRef, where('userId', '==', currentUserId));
         const snap = await getDocs(q);
         console.log('snap', snap);
         let list = [];
