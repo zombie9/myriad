@@ -45,9 +45,11 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
 
   useEffect(() => {
     const unsubscribe = async () => {
+      console.log('in useEffect');
       const collectionRef = collection(db, 'characters');
       const q = query(collectionRef, where('userId', '==', currentUserId));
       const snap = await getDocs(q);
+      console.log('snap', snap);
       let list = [];
       snap.forEach((doc) => {
         list.push({
@@ -56,9 +58,11 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
         });
       });
       if (list.length < 1) {
+        console.log('no characters!');
         setError('Could not retrieve any saved characters.');
         return;
       }
+      console.log('list', list);
       setCharacterList(list);
       setLoading(false);
     };
