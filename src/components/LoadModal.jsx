@@ -67,7 +67,7 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
       setLoading(false);
     };
     return unsubscribe;
-  }, []);
+  }, [currentUser]);
 
   const handleLoad = (id) => {
     const characterToLoad = characterList.find((char) => char.id === id);
@@ -77,7 +77,6 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
   };
 
   console.log('characterList', characterList);
-  console.log('loading', loading);
 
   return (
     <ModalBackdrop>
@@ -87,7 +86,7 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
         </CloseButton>
         <Heading>L O A D</Heading>
         <div style={{ paddingBottom: '0.5rem' }}>Select your character:</div>
-        {characterList > 0 &&
+        {!loading &&
           characterList.map((char) => {
             return (
               <CharacterRow key={char.id}>
