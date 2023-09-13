@@ -1,11 +1,13 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import React, { useContext, useEffect, useState } from 'react';
+// import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useContext } from 'react';
 import { X } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 
+// import { useAuth } from '../context/authContext';
 import { useAuth } from '../context/authContext';
 import { Context } from '../context/context';
-import { db } from '../firebase';
+// import { db } from '../firebase';
+import { useFirebase } from '../hooks/useFirebase';
 import {
   ModalBackdrop,
   AuthBox,
@@ -36,38 +38,39 @@ const CharacterButton = styled(ThemeButton)`
 `;
 
 const LoadModal = ({ closeModal, setMenuIsOpen }) => {
-  const [characterList, setCharacterList] = useState([]);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  const { currentUser } = useAuth();
+  // const [characterList, setCharacterList] = useState([]);
+  // const [error, setError] = useState('');
+  // const [loading, setLoading] = useState(true);
+  // const { currentUser } = useAuth();
   const { setCharacter } = useContext(Context);
-  const currentUserId = currentUser.uid;
 
-  useEffect(() => {
-    const unsubscribe = async () => {
-      console.log('in useEffect');
-      const collectionRef = collection(db, 'characters');
-      const q = query(collectionRef, where('userId', '==', currentUserId));
-      const snap = await getDocs(q);
-      console.log('snap', snap);
-      let list = [];
-      snap.forEach((doc) => {
-        list.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-      if (list.length < 1) {
-        console.log('no characters!');
-        setError('Could not retrieve any saved characters.');
-        return;
-      }
-      console.log('list', list);
-      setCharacterList(list);
-      setLoading(false);
-    };
-    return unsubscribe;
-  }, [currentUser]);
+  // useEffect(() => {
+  //   const unsubscribe = async () => {
+  //     const currentUserId = currentUser.uid;
+  //     const collectionRef = collection(db, 'characters');
+  //     const q = query(collectionRef, where('userId', '==', currentUserId));
+  //     const snap = await getDocs(q);
+  //     console.log('snap', snap);
+  //     let list = [];
+  //     snap.forEach((doc) => {
+  //       list.push({
+  //         id: doc.id,
+  //         ...doc.data()
+  //       });
+  //     });
+  //     if (list.length < 1) {
+  //       console.log('no characters!');
+  //       setError('Could not retrieve any saved characters.');
+  //       return;
+  //     }
+  //     console.log('list', list);
+  //     setCharacterList(list);
+  //     setLoading(false);
+  //   };
+  //   return unsubscribe;
+  // }, [currentUser]);
+  const { currentUser } = useAuth();
+  const { characterList, loading, error } = useFirebase(currentUser);
 
   const handleLoad = (id) => {
     const characterToLoad = characterList.find((char) => char.id === id);
@@ -86,7 +89,8 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
         </CloseButton>
         <Heading>L O A D</Heading>
         <div style={{ paddingBottom: '0.5rem' }}>Select your character:</div>
-        {!loading &&
+        {loading && loading}
+        {characterList &&
           characterList.map((char) => {
             return (
               <CharacterRow key={char.id}>

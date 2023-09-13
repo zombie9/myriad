@@ -35,6 +35,7 @@ const Login = () => {
       console.error(error);
       setError('Failed to log in');
     }
+
     setLoading(false);
   };
   return (
