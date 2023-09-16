@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { routes } from '../../constants';
 import { useAuth } from '../../context/authContext';
 
 const PrivateRoute = ({ children }) => {
@@ -9,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 
   useEffect(() => {
     if (!currentUser) {
-      navigate('./login');
+      navigate(routes.LOGIN);
     }
   }, []);
   return <>{children}</>;

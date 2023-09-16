@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { routes } from '../../constants';
 import { useAuth } from '../../context/authContext';
 import {
   AuthBox,
@@ -41,24 +42,26 @@ const Login = () => {
   return (
     <ModalBackdrop>
       <AuthBox>
-        <Heading>L O G I N</Heading>
-        <Field>
-          <TextLabel>Email</TextLabel>
-          <AuthField type="email" ref={emailRef} />
-        </Field>
-        <Field>
-          <TextLabel>Password</TextLabel>
-          <AuthField type="password" ref={passwordRef} />
-        </Field>
-        <SubmitButtonWrapper>
-          <ErrorBox>{error && error}</ErrorBox>
-          <ThemeButton disabled={loading} type="submit" onClick={handleSubmit}>
-            <code>S U B M I T</code>
-          </ThemeButton>
-        </SubmitButtonWrapper>
-        <CenterWrapper>
-          <Link to="/signup">Need an account? Sign Up</Link>
-        </CenterWrapper>
+        <form onSubmit={handleSubmit}>
+          <Heading>L O G I N</Heading>
+          <Field>
+            <TextLabel>Email</TextLabel>
+            <AuthField type="email" name="email" autoComplete="on" ref={emailRef} />
+          </Field>
+          <Field>
+            <TextLabel>Password</TextLabel>
+            <AuthField type="password" name="password" ref={passwordRef} />
+          </Field>
+          <SubmitButtonWrapper>
+            <ErrorBox>{error && error}</ErrorBox>
+            <ThemeButton disabled={loading} type="submit">
+              <code>S U B M I T</code>
+            </ThemeButton>
+          </SubmitButtonWrapper>
+          <CenterWrapper>
+            <Link to={routes.SIGNUP}>Need an account? Sign Up</Link>
+          </CenterWrapper>
+        </form>
       </AuthBox>
     </ModalBackdrop>
   );

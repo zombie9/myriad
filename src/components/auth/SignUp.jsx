@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { routes } from '../../constants';
 import { useAuth } from '../../context/authContext';
 import {
   AuthBox,
@@ -62,7 +63,7 @@ const SignUp = () => {
           </ThemeButton>
         </SubmitButtonWrapper>
         <CenterWrapper>
-          <Link to="/login">Already have an account? Log In</Link>
+          <Link to={routes.LOGIN}>Already have an account? Log In</Link>
         </CenterWrapper>
       </AuthBox>
     </ModalBackdrop>

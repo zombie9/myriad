@@ -13,3 +13,11 @@ export const skillStatOptions = {
   DEX: 'DEX',
   DEFAULT: 'Stat'
 };
+
+export const routes = {
+  HOME: '/',
+  LOAD: '/load',
+  SAVE: '/save',
+  SIGNUP: '/signup',
+  LOGIN: '/login'
+};

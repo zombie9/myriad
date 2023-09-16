@@ -9,6 +9,7 @@ import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import SignUp from './components/auth/SignUp';
 import Container from './components/character/Container';
+import { routes } from './constants';
 import { AuthProvider } from './context/authContext';
 import { Context } from './context/context';
 import { emptyCharacter } from './data/emptyCharacter';
@@ -37,17 +38,17 @@ export const App = () => {
             <Header theme={theme} toggleTheme={toggleTheme} />
             <Routes>
               <Route
-                path="/"
+                path={routes.HOME}
                 element={
                   <PrivateRoute>
                     <Container />
                   </PrivateRoute>
                 }
               />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/load" element={<LoadModal />} />
-              <Route path="/save" element={<SaveModal />} />
+              <Route path={routes.SIGNUP} element={<SignUp />} />
+              <Route path={routes.LOGIN} element={<Login />} />
+              <Route path={routes.LOAD} element={<LoadModal />} />
+              <Route path={routes.SAVE} element={<SaveModal />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
