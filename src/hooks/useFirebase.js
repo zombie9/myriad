@@ -10,35 +10,38 @@ export const useFirebase = (currentUser) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  useEffect(async () => {
-    setLoading('Loading...');
-    setError(null);
-    setCharacterList(null);
-    try {
-      const currentUserId = currentUser.uid;
-      const collectionRef = await collection(db, 'characters');
-      const q = query(collectionRef, where('userId', '==', currentUserId));
-      const snap = await getDocs(q);
-      console.log('snap', snap);
-      let list = [];
-      snap.forEach((doc) => {
-        list.push({
-          id: doc.id,
-          ...doc.data()
+  useEffect(() => {
+    const fetchCharacter = async () => {
+      setLoading('Loading...');
+      setError(null);
+      setCharacterList(null);
+      try {
+        const currentUserId = currentUser.uid;
+        const collectionRef = await collection(db, 'characters');
+        const q = query(collectionRef, where('userId', '==', currentUserId));
+        const snap = await getDocs(q);
+        console.log('snap', snap);
+        let list = [];
+        snap.forEach((doc) => {
+          list.push({
+            id: doc.id,
+            ...doc.data()
+          });
         });
-      });
-      if (list.length < 1) {
-        console.log('no characters!');
-        setError('Could not retrieve any saved characters.');
-        return;
+        if (list.length < 1) {
+          console.log('no characters!');
+          setError('Could not retrieve any saved characters.');
+          return;
+        }
+        console.log('list', list);
+        setCharacterList(list);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setError('Fetch error.');
       }
-      console.log('list', list);
-      setCharacterList(list);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setError('Fetch error.');
-    }
+    };
+    fetchCharacter();
   }, []);
 
   return { characterList, loading, error };
