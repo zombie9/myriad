@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ThemeButton } from '../styles/sharedStyles';
 
-import LoadModal from './LoadModal';
-
-const LoadButton = ({ setMenuIsOpen }) => {
-  const [showModal, setShowModal] = useState(false);
-  const closeModal = () => setShowModal(false);
+const LoadButton = () => {
+  // const [showModal, setShowModal] = useState(false);
+  // const closeModal = () => setShowModal(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      <ThemeButton onClick={() => setShowModal(true)}>
+      <ThemeButton onClick={() => navigate('./load')}>
         <code>LOAD</code>
       </ThemeButton>
-      {showModal && <LoadModal closeModal={closeModal} setMenuIsOpen={setMenuIsOpen} />}
+      {/* {showModal && <LoadModal closeModal={closeModal} setMenuIsOpen={setMenuIsOpen} />} */}
     </>
   );
 };

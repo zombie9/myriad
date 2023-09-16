@@ -1,6 +1,7 @@
 // import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useContext } from 'react';
 import { X } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 // import { useAuth } from '../context/authContext';
@@ -37,7 +38,7 @@ const CharacterButton = styled(ThemeButton)`
   min-width: 320px;
 `;
 
-const LoadModal = ({ closeModal, setMenuIsOpen }) => {
+const LoadModal = ({ closeModal }) => {
   // const [characterList, setCharacterList] = useState([]);
   // const [error, setError] = useState('');
   // const [loading, setLoading] = useState(true);
@@ -71,12 +72,14 @@ const LoadModal = ({ closeModal, setMenuIsOpen }) => {
   // }, [currentUser]);
   const { currentUser } = useAuth();
   const { characterList, loading, error } = useFirebase(currentUser);
+  const navigate = useNavigate();
 
   const handleLoad = (id) => {
     const characterToLoad = characterList.find((char) => char.id === id);
     setCharacter(characterToLoad);
-    setMenuIsOpen(false);
-    closeModal();
+    // setMenuIsOpen(false);
+    // closeModal();
+    navigate('/');
   };
 
   console.log('characterList', characterList);

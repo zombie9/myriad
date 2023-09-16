@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import Header from './components/Header';
+import LoadModal from './components/LoadModal';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import SignUp from './components/auth/SignUp';
@@ -44,6 +45,7 @@ export const App = () => {
               />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/load" element={<LoadModal />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

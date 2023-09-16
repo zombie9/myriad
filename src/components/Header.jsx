@@ -1,10 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import { useAuth } from '../context/authContext';
-import { Context } from '../context/context';
-import { useFirebase } from '../hooks/useFirebase';
-import { SubmitButtonWrapper, ErrorBox, ThemeButton } from '../styles/sharedStyles';
 
 import LoadButton from './LoadButton';
 import LogoutButton from './LogoutButton';
@@ -19,7 +14,7 @@ const StyledHeader = styled.header`
   font-size: 1.5rem;
   padding: 1rem 0;
   padding-right: 1rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -55,30 +50,8 @@ const MenuBar = styled.div`
   }
 `;
 
-const CharacterRow = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-`;
-
-const CharacterButton = styled(ThemeButton)`
-  width: 100%;
-  min-width: 320px;
-`;
-
 const Header = ({ theme, toggleTheme }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const { currentUser } = useAuth();
-  const { characterList, loading, error } = useFirebase(currentUser);
-  const { setCharacter } = useContext(Context);
-
-  const handleLoad = (id) => {
-    const characterToLoad = characterList.find((char) => char.id === id);
-    setCharacter(characterToLoad);
-    setMenuIsOpen(false);
-  };
-
   return (
     <>
       <StyledHeader>
@@ -88,23 +61,8 @@ const Header = ({ theme, toggleTheme }) => {
       </StyledHeader>
       <MenuBar open={menuIsOpen}>
         <SaveButton setMenuIsOpen={setMenuIsOpen} />
-        {/* <LoadButton setMenuIsOpen={setMenuIsOpen} /> */}
+        <LoadButton setMenuIsOpen={setMenuIsOpen} />
         <LogoutButton setMenuIsOpen={setMenuIsOpen} />
-        <hr />
-        {loading && loading}
-        {characterList &&
-          characterList.map((char) => {
-            return (
-              <CharacterRow key={char.id}>
-                <CharacterButton onClick={() => handleLoad(char.id)}>
-                  <code>{char.id.toUpperCase()}</code>
-                </CharacterButton>
-              </CharacterRow>
-            );
-          })}
-        <SubmitButtonWrapper>
-          <ErrorBox>{error && error}</ErrorBox>
-        </SubmitButtonWrapper>
       </MenuBar>
     </>
   );
