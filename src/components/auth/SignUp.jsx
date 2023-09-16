@@ -22,9 +22,7 @@ const SignUp = () => {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signUp, currentUser } = useAuth();
-
-  console.log('currentUser', currentUser);
+  const { signUp } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();

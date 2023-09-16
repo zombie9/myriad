@@ -47,7 +47,6 @@ const SaveModal = () => {
       };
       delete docToSave.id;
       await setDoc(docRef, docToSave);
-      console.log('success!');
     } catch (error) {
       console.error(error);
       setError('Failed to save character');

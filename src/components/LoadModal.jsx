@@ -1,13 +1,10 @@
-// import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useContext } from 'react';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// import { useAuth } from '../context/authContext';
 import { useAuth } from '../context/authContext';
 import { Context } from '../context/context';
-// import { db } from '../firebase';
 import { useFirebase } from '../hooks/useFirebase';
 import {
   ModalBackdrop,
@@ -39,37 +36,7 @@ const CharacterButton = styled(ThemeButton)`
 `;
 
 const LoadModal = ({ closeModal }) => {
-  // const [characterList, setCharacterList] = useState([]);
-  // const [error, setError] = useState('');
-  // const [loading, setLoading] = useState(true);
-  // const { currentUser } = useAuth();
   const { setCharacter } = useContext(Context);
-
-  // useEffect(() => {
-  //   const unsubscribe = async () => {
-  //     const currentUserId = currentUser.uid;
-  //     const collectionRef = collection(db, 'characters');
-  //     const q = query(collectionRef, where('userId', '==', currentUserId));
-  //     const snap = await getDocs(q);
-  //     console.log('snap', snap);
-  //     let list = [];
-  //     snap.forEach((doc) => {
-  //       list.push({
-  //         id: doc.id,
-  //         ...doc.data()
-  //       });
-  //     });
-  //     if (list.length < 1) {
-  //       console.log('no characters!');
-  //       setError('Could not retrieve any saved characters.');
-  //       return;
-  //     }
-  //     console.log('list', list);
-  //     setCharacterList(list);
-  //     setLoading(false);
-  //   };
-  //   return unsubscribe;
-  // }, [currentUser]);
   const { currentUser } = useAuth();
   const { characterList, loading, error } = useFirebase(currentUser);
   const navigate = useNavigate();
@@ -77,12 +44,8 @@ const LoadModal = ({ closeModal }) => {
   const handleLoad = (id) => {
     const characterToLoad = characterList.find((char) => char.id === id);
     setCharacter(characterToLoad);
-    // setMenuIsOpen(false);
-    // closeModal();
     navigate('/');
   };
-
-  console.log('characterList', characterList);
 
   return (
     <ModalBackdrop>
