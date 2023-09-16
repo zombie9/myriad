@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useLayoutEffect } from 'react';
 
 import { Context } from '../../context/context';
 import { personaFields } from '../../data/persona';
@@ -12,8 +12,12 @@ import {
   PersonaDescriptionField
 } from '../../styles/sharedStyles';
 
+const MIN_TEXTAREA_HEIGHT = 64;
+
 const Persona = () => {
   const { character, setCharacter } = useContext(Context);
+  const textareaRef = useRef(null);
+
   const handleChange = (event, { key }) => {
     setCharacter({
       ...character,
@@ -23,6 +27,16 @@ const Persona = () => {
       }
     });
   };
+
+  useLayoutEffect(() => {
+    // Reset height - important to shrink on delete
+    textareaRef.current.style.height = 'inherit';
+    // Set height
+    textareaRef.current.style.height = `${Math.max(
+      textareaRef.current.scrollHeight,
+      MIN_TEXTAREA_HEIGHT
+    )}px`;
+  }, [character.persona.description]);
 
   return (
     <Box>
@@ -50,7 +64,7 @@ const Persona = () => {
           <PersonaDescriptionField>
             <TextLabel>Description</TextLabel>
             <textarea
-              rows={character.persona.description.split('\n').length + 1}
+              ref={textareaRef}
               spellCheck="false"
               value={character.persona.description}
               onChange={(event) => handleChange(event, { key: 'description' })}

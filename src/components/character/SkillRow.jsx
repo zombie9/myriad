@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 
 import { MACRO_PREFIX, stats, skillStatOptions } from '../../constants';
@@ -14,6 +14,8 @@ import {
   DiceBox
 } from '../../styles/sharedStyles';
 
+const MIN_TEXTAREA_HEIGHT = 32;
+
 const D20 = styled.svg`
   transform: rotate(0deg);
   transition: all 0.3s ease-out;
@@ -23,6 +25,7 @@ const D20 = styled.svg`
 const SkillRow = ({ field, index }) => {
   const { character, setCharacter } = useContext(Context);
   const [spin, setSpin] = useState(false);
+  const textareaRef = useRef(null);
 
   const buildMacro = (stat, skill) => {
     return `${MACRO_PREFIX}${character.stats[stat]}+${skill}`;
@@ -36,6 +39,16 @@ const SkillRow = ({ field, index }) => {
       skills: updatedSkills
     });
   };
+
+  useLayoutEffect(() => {
+    // Reset height - important to shrink on delete
+    textareaRef.current.style.height = 'inherit';
+    // Set height
+    textareaRef.current.style.height = `${Math.max(
+      textareaRef.current.scrollHeight,
+      MIN_TEXTAREA_HEIGHT
+    )}px`;
+  }, [character.persona.description]);
 
   return (
     <SkillBlock>
@@ -82,7 +95,7 @@ const SkillRow = ({ field, index }) => {
           <option value={stats.DEXTERITY}>{skillStatOptions.DEX}</option>
         </StatField>
         <DescriptionField
-          rows={field.description.split('\n').length + 1}
+          ref={textareaRef}
           name="description"
           value={field.description}
           placeholder="Description"
