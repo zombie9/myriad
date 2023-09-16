@@ -1,6 +1,7 @@
 import { doc, setDoc } from 'firebase/firestore';
 import React, { useContext, useState, useRef } from 'react';
 import { X } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useAuth } from '../context/authContext';
@@ -26,12 +27,13 @@ const CloseButton = styled.div`
   color: ${({ theme }) => theme.secondary};
 `;
 
-const SaveModal = ({ closeModal }) => {
+const SaveModal = () => {
   const { character } = useContext(Context);
   const { currentUser } = useAuth();
   const nameRef = useRef();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,18 +48,18 @@ const SaveModal = ({ closeModal }) => {
       delete docToSave.id;
       await setDoc(docRef, docToSave);
       console.log('success!');
-      closeModal();
     } catch (error) {
       console.error(error);
       setError('Failed to save character');
     }
     setLoading(false);
+    navigate('/');
   };
 
   return (
     <ModalBackdrop>
       <AuthBox>
-        <CloseButton onClick={() => closeModal()}>
+        <CloseButton onClick={() => navigate('/')}>
           <X size={20} />
         </CloseButton>
         <Heading>S A V E</Heading>

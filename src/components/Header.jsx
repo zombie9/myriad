@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import LoadButton from './LoadButton';
 import LogoutButton from './LogoutButton';
 import MenuButton from './MenuButton';
-import SaveButton from './SaveButton';
+import NavButton from './NavButton';
 import ThemeToggle from './ThemeToggle';
 
 const StyledHeader = styled.header`
@@ -60,8 +59,8 @@ const Header = ({ theme, toggleTheme }) => {
         <MenuButton setMenuIsOpen={setMenuIsOpen} />
       </StyledHeader>
       <MenuBar open={menuIsOpen}>
-        <SaveButton setMenuIsOpen={setMenuIsOpen} />
-        <LoadButton setMenuIsOpen={setMenuIsOpen} />
+        <NavButton text="SAVE" path="/save" setMenuIsOpen={setMenuIsOpen} />
+        <NavButton text="LOAD" path="/load" setMenuIsOpen={setMenuIsOpen} />
         <LogoutButton setMenuIsOpen={setMenuIsOpen} />
       </MenuBar>
     </>
